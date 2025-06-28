@@ -5,26 +5,35 @@ require_once("UserRole.php");
 class UserModel extends Model{
     protected int $id;
     private string $name;
+    private string $last_name;
     private string $email;
     private string $password;
     protected static string $table = "users";
     public function __construct(array $data){
         $this->id = $data["id"];
         $this->name = $data["name"];
+        $this->last_name = $data["last_name"];
         $this->email = $data["email"];
         $this->password = $data["password"];
     }
     public function getId(): int {
         return $this->id;
     }
+    public function getName(): string {
+        return $this->name;
+    }
+    public function getLastName(): string {
+        return $this->last_name;
+    }
     public function toArray(){
         return [
             "id"    => $this->id,
             "name"  => $this->name,
+            "last_name"  => $this->last_name,
             "email" => $this->email
         ];
     }
-    public static function create(array $data) {
+    public static function register(array $data) {
         $findUser = static::find($data['email'], 'email');
         if ($findUser !== null) {
             return null;

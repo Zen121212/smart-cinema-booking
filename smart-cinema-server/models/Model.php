@@ -51,9 +51,41 @@ abstract class Model{
         $query->execute();
 
         $data = $query->get_result()->fetch_assoc();
-
         return $data ? new static($data) : null;
     }
+    public static function update( $key, array $data) {
+ 
+        $columns = array_keys($data);
+        $assignmentsArray = [];
+        foreach ($columns as $col) {
+            $assignmentsArray[] = "$col = ?";
+        }
+        $assignments = implode(', ', $assignmentsArray);
+
+        $values = array_values($data);
+
+        $types = static::detectTypes($values);
+
+        $sql = sprintf(
+            "UPDATE %s SET %s WHERE %s = ?",
+            static::$table,
+            $assignments,
+            $key
+        );
+
+        $query = static::$mysqli->prepare($sql);
+
+        $values[] = $key;
+
+        $types .= "i";
+
+        $query->bind_param($types, ...$values);
+        $query->execute();
+
+        $updatedRow = static::find($key, static::$primary_key);
+        return $updatedRow;
+    }
+
     public static function create(array $data) {
         $columns = array_keys($data);
         $placeholders = implode(', ', array_fill(0, count($columns), '?'));
