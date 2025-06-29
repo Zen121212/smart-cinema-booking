@@ -59,8 +59,35 @@ abstract class Model{
         $data = $query->get_result()->fetch_assoc();
         return $data ? new static($data) : null;
     }
+    //     public function updateBalance($amount, $type, $description = '')
+    // {
+    //     $amount = floatval($amount);
+    //     $currentBalance = floatval($this->balance);
+
+    //     if ($type === 'credit') {
+    //         $newBalance = $currentBalance + $amount;
+    //     } elseif ($type === 'debit') {
+    //         if ($currentBalance < $amount) {
+    //             return false; // Insufficient balance
+    //         }
+    //         $newBalance = $currentBalance - $amount;
+    //     } else {
+    //         return false;
+    //     }
+
+    //     $sql = "UPDATE wallets SET balance = ? WHERE user_id = 73";
+    //     $stmt = static::$mysqli->prepare($sql);
+    //     $stmt->bind_param("d", $newBalance);
+
+    //     if ($stmt->execute()) {
+    //         $this->balance = $newBalance;
+    //         return true;
+    //     }
+
+    //     return false;
+    // }
     public static function update( $key, array $data) {
- 
+        // echo"key : $key";
         $columns = array_keys($data);
         $assignmentsArray = [];
         foreach ($columns as $col) {
@@ -78,9 +105,10 @@ abstract class Model{
             $assignments,
             $key
         );
+        echo"$sql";
+        print_r($values);
 
         $query = static::$mysqli->prepare($sql);
-
         $values[] = $key;
 
         $types .= "i";

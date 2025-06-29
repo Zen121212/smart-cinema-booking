@@ -3,6 +3,8 @@ require_once("../../connection/connection.php");
 require_once("../../models/User.php");
 require_once("../../models/UserRole.php");
 require_once("../../models/UserProfile.php");
+require_once("../../models/Wallet.php");
+
 
 
 ini_set('display_errors', 1);
@@ -48,6 +50,9 @@ if($user){
     ];
 
     $profile = UserProfile::create($profileData);
+
+    $wallet = Wallet::create(['user_id' => $user->getId(),'balance' => 0.00,'currency' => 'USD']);
+
 
     echo json_encode([
         "message" => "User created successfully.",

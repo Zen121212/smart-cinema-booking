@@ -19,10 +19,8 @@
 //     if ($method === 'POST') {
 //         $userController->createUser();
 //     } else {
-//         http_response_code(405);
 //         echo json_encode(['message' => 'Method Not Allowed']);
 //     }
 // } else {
-//     http_response_code(404);
 //     echo json_encode(['message' => 'Route not found']);
 // }
