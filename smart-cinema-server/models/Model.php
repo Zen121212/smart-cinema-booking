@@ -14,13 +14,19 @@ abstract class Model{
         }
         $types = '';
         foreach ($values as $value) {
-            if (is_int($value)) {
+            if (is_null($value)) {
+                $types .= 's';
+            } elseif (is_int($value)) {
                 $types .= 'i';
-            } 
-            else{
+            } elseif (is_float($value) || is_double($value)) {
+                $types .= 'd';
+            } elseif (is_bool($value)) {
+                $types .= 'i';
+            } else {
                 $types .= 's';
             }
         }
+        
         return $types;
     }
     public static function all(){

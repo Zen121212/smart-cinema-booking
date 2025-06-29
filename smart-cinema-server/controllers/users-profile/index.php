@@ -13,7 +13,6 @@ Model::setConnection($mysqli);
 header("Content-Type: application/json");
 
 if (!isset($_GET['user_profile_id'])) {
-    http_response_code(400);
     echo json_encode([
         "error" => "Missing user_profile_id parameter."
     ]);
@@ -30,7 +29,6 @@ if ($userProfile) {
         "user_profile" => $userProfile->toArray()
     ]);
 } else {
-    http_response_code(404);
     echo json_encode([
         "error" => "User profile not found."
     ]);

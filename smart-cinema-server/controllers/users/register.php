@@ -16,9 +16,7 @@ header("Content-Type: application/json");
 
 
 if (!isset($_POST['name'], $_POST['last_name'], $_POST['email'], $_POST['password'])) {
-    http_response_code(400);
     echo json_encode([
-        "status" => 400,
         "error" => "Invalid or missing POST data."
     ]);
     return;
