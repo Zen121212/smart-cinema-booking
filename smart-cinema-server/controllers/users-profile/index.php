@@ -22,7 +22,7 @@ if (!isset($_GET['user_profile_id'])) {
 
 $user_profile_id = (int)$_GET['user_profile_id'];
 
-$userProfile = UserProfile::find($user_profile_id, 'user_profile_id');
+$userProfile = UserProfile::find($user_profile_id);
 
 if ($userProfile) {
     echo json_encode([

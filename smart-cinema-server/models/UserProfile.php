@@ -5,19 +5,14 @@ class UserProfile extends Model
 {
     protected int $user_profile_id;
     private string $user_profile_username;
-
     private ?string $user_profile_name;
     private ?string $user_profile_last_name;
     protected ?string $phone;
     protected ?string $address;
     protected ?string $bio;
     protected ?string $avatar_image;
-
     protected static string $table = 'users_profile';
-
     protected static string $primary_key = "user_profile_id";
-
-
     public function __construct(array $data) {
         $this->user_profile_id = $data['user_profile_id'] ?? 0;
         $this->user_profile_username = $data['user_profile_username'] ?? '';
@@ -28,7 +23,6 @@ class UserProfile extends Model
         $this->bio = $data['bio'] ?? '';
         $this->avatar_image = $data['avatar_image'] ?? '';
     }
-
     public function getUserProfileId(): int {
         return $this->user_profile_id;
     }
@@ -44,19 +38,15 @@ class UserProfile extends Model
     public function getPhone(): ?string {
         return $this->phone;
     }
-
     public function getAddress(): ?string {
         return $this->address;
     }
-
     public function getBio(): ?string {
         return $this->bio;
     }
-
     public function getAvatarImage(): ?string {
         return $this->avatar_image;
     }
-
     public function toArray(): array {
         return [
             'user_profile_id' => $this->user_profile_id,

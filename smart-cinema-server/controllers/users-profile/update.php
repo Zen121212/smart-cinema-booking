@@ -1,6 +1,10 @@
 <?php
 require_once("../../connection/connection.php");
 require_once("../../models/UserProfile.php");
+require_once("../../models/UserFavoriteGenre.php");
+require_once("../../models/UserPaymentMethod.php");
+
+
 
 Model::setConnection($mysqli);
 
@@ -27,10 +31,10 @@ $data = [
     'avatar_image' => $_POST['avatar_image'],
 ];
 
-$userProfile = UserProfile::find($user_profile_id, 'user_profile_id');
+$userProfile = UserProfile::find($user_profile_id);
 
 if (!$userProfile) {
-    http_response_code(404);
+
     echo json_encode([
         "error" => "User profile not found."
     ]);
