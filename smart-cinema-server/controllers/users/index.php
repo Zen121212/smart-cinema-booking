@@ -28,7 +28,6 @@ else
     } 
     else {
         $users = UserModel::all();
-        print_r($user);
     }
     foreach($users as $u){
         $response["users"][] = $u->toArray(); 

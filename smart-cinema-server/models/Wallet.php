@@ -3,10 +3,10 @@
 require_once("Model.php");
 class Wallet extends Model
 {
-    public $id;
-    public $user_id;
-    public $balance;
-    public $currency;
+    public int $id;
+    public int $user_id;
+    public float $balance;
+    public string $currency;
 
     protected static string $table = 'wallets';
     protected static string $primary_key = "user_id";
@@ -26,22 +26,21 @@ class Wallet extends Model
             'currency' => $this->currency
         ];
     }
-public function updateBalance($amount, $type) {
+    public function updateBalance($amount, $type) {
+
     $amount = floatval($amount);
     $currentBalance = floatval($this->balance);
 
     if ($type === 'credit') {
         $newBalance = $currentBalance + $amount;
-    } elseif ($type === 'debit') {
+    } elseif ($type === 'paid') {
         if ($currentBalance < $amount) {
-            return false; // Insufficient funds
+            return false;
         }
         $newBalance = $currentBalance - $amount;
     } else {
-        return false; // Invalid transaction type
+        return false;
     }
-
-    // Build SQL directly
     $sql = sprintf(
         "UPDATE %s SET balance = ? WHERE %s = ?",
         static::$table,
@@ -53,7 +52,6 @@ public function updateBalance($amount, $type) {
     $success = $stmt->execute();
 
     if ($success) {
-        // Update the instance property as well
         $this->balance = $newBalance;
         return $this;
     } else {

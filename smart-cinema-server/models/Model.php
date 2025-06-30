@@ -31,32 +31,31 @@ abstract class Model{
     }
     public static function all(){
         $sql = sprintf("Select * from %s", static::$table);
-        
         $query = static::$mysqli->prepare($sql);
         $query->execute();
-
+        
         $data = $query->get_result();
-
+        
         $objects = [];
         while($row = $data->fetch_assoc()){
+             $count++;
             $objects[] = new static($row); //creating an object of type "static" / "parent" and adding the object to the array
         }
-
-        return $objects; //we are returning an array of objects!!!!!!!!
+        return $objects; //we are returning an array of objects!!!!!!!!c
     }
     public static function find($value, $key = null) {
-
         $key = $key ?? static::$primary_key;
-
+        
         $sql = sprintf("SELECT * FROM %s WHERE %s = ? LIMIT 1", static::$table, $key);
         $query = static::$mysqli->prepare($sql);
 
         $type = static::detectTypes([$value]);
-
+        
         $query->bind_param($type, $value);
         $query->execute();
-
+        
         $data = $query->get_result()->fetch_assoc();
+        // print($data);
         return $data ? new static($data) : null;
     }
     public static function update( $key, array $data) {
@@ -78,8 +77,6 @@ abstract class Model{
             $assignments,
             $key
         );
-        echo"$sql";
-        print_r($values);
 
         $query = static::$mysqli->prepare($sql);
         $values[] = $key;
@@ -111,7 +108,6 @@ abstract class Model{
 
         $query->bind_param($types, ...$values);
         $query->execute();
-
         $data['id'] = static::$mysqli->insert_id;
         return new static($data);
     }
