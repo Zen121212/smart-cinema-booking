@@ -1,0 +1,29 @@
+.movie-listings {
+  padding: 2rem;
+  background-color: #fff;
+}
+
+.movie-listings h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.movie-card {
+  background: #f1f1f1;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.movie-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
