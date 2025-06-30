@@ -29,7 +29,6 @@ $wallet = Wallet::find( $user_id);
 $showtimeId = $_POST['showtime_id'];
 $seatId = $_POST['seat_id'];
 
-
 $is_booked = Booking::checkReservation($showtimeId, $seatId);
 
 $total_price = floatval($_POST['total_price']);

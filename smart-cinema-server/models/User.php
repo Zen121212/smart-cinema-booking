@@ -10,7 +10,7 @@ class UserModel extends Model{
     private string $password;
     protected static string $table = "users";
     public function __construct(array $data){
-        $this->id = (int)$data['id'];
+        $this->id = $data['id'];
        $this->name = $data['name'] ?? '';
         $this->last_name = $data['last_name'] ?? '';
         $this->email = $data['email'] ?? '';

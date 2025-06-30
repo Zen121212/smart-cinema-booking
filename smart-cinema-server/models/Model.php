@@ -49,17 +49,17 @@ abstract class Model{
         $sql = sprintf("SELECT * FROM %s WHERE %s = ? LIMIT 1", static::$table, $key);
         $query = static::$mysqli->prepare($sql);
 
-        $type = static::detectTypes([$value]);
+        $type = self::detectTypes([$value]);
         
         $query->bind_param($type, $value);
         $query->execute();
         
         $data = $query->get_result()->fetch_assoc();
-        // print($data);
+
         return $data ? new static($data) : null;
     }
-    public static function update( $key, array $data) {
-        // echo"key : $key";
+    public static function update( $id, array $data) {
+
         $columns = array_keys($data);
         $assignmentsArray = [];
         foreach ($columns as $col) {
@@ -69,24 +69,24 @@ abstract class Model{
 
         $values = array_values($data);
 
-        $types = static::detectTypes($values);
+        $types = self::detectTypes($values);
 
         $sql = sprintf(
             "UPDATE %s SET %s WHERE %s = ?",
             static::$table,
             $assignments,
-            $key
+            $id
         );
 
         $query = static::$mysqli->prepare($sql);
-        $values[] = $key;
+        $values[] = $id;
 
         $types .= "i";
 
         $query->bind_param($types, ...$values);
         $query->execute();
 
-        $updatedRow = static::find($key, static::$primary_key);
+        $updatedRow = static::find($id, static::$primary_key);
         return $updatedRow;
     }
 
@@ -96,7 +96,7 @@ abstract class Model{
         $columnList = implode(', ', $columns);
         $values = array_values($data);
 
-        $types = static::detectTypes($values);
+        $types = self::detectTypes($values);
 
         $sql = sprintf(
             "INSERT INTO %s (%s) VALUES (%s)",

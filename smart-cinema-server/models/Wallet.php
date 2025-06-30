@@ -3,21 +3,37 @@
 require_once("Model.php");
 class Wallet extends Model
 {
-    public int $id;
-    public int $user_id;
-    public float $balance;
-    public string $currency;
+    protected int $id;
+    private int $user_id;
+    private float $balance;
+    private string $currency;
 
     protected static string $table = 'wallets';
     protected static string $primary_key = "user_id";
 
     public function __construct(array $data) {
+        $this->id = $data['id'];
         $this->user_id = $data['user_id'];
         $this->balance = $data['balance'];
         $this->currency = $data['currency'];
 
     }
 
+    public function getId(): int {
+        return $this->id;
+    }
+    public function getUserId(): string {
+        return $this->user_id;
+    }
+    public function getBalance(): string {
+        return $this->balance;
+    }
+    public function setBalance(float $amount): void {
+        $this->balance = $amount;
+    }
+    public function getCurrency(): string {
+        return $this->currency;
+    }
     public function toArray()
     {
         return [

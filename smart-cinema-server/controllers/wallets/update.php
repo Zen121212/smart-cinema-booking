@@ -26,9 +26,10 @@ if ($amount === false || $amount <= 0) {
 }
 
 $wallet = Wallet::find($user_id);
+// echo"YES";
 if($wallet){ 
     
-    $balanceBefore = $wallet->balance;
+    $balanceBefore = $wallet->getBalance();
 
     $success = $wallet->updateBalance($amount, $type);
 
