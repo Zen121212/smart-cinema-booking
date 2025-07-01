@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Cinema - Home</title>
+    <link rel="stylesheet" href="../styles/home.css" />
+    <script defer src="../../public/home.bundle.js"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="#" class="logo">🎬 Smart Cinema</a>
+        <a href="#" class="nav-link">Home</a>
+        <a href="#" class="nav-link">Movies</a>
+        <a href="#" class="nav-link">Bookings</a>
+        <a href="#" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-right">
+        <div class="profile-menu">
+          <button id="signOutBtn">Sign Out</button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="content">
+      <h1 id="welcomeMessage">Welcome to Smart Cinema</h1>
+      <p>Enjoy seamless movie booking and premium cinematic experiences.</p>
+      <h2>My Tickets</h2>
+      <ul id="ticketList"></ul>
+      <section id="profileSection" class="profile-section">
+        <h2>User Profile</h2>
+        <div class="profile-info">
+          <img id="avatarImage" src="" alt="Avatar" width="100" />
+          <p><strong>Username:</strong> <span id="profileUsername"></span></p>
+          <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+          <p><strong>Phone:</strong> <span id="profilePhone"></span></p>
+          <p><strong>Address:</strong> <span id="profileAddress"></span></p>
+          <p><strong>Bio:</strong> <span id="profileBio"></span></p>
+        </div>
+        <button id="editProfileBtn">Edit Profile</button>
+
+        <form id="editProfileForm" style="display: none">
+          <label>
+            Username:
+            <input type="text" name="user_profile_username" id="editUsername" />
+          </label>
+          <label>
+            Phone:
+            <input type="text" name="phone" id="editPhone" />
+          </label>
+          <label>
+            Address:
+            <input type="text" name="address" id="editAddress" />
+          </label>
+          <label>
+            Bio:
+            <textarea name="bio" id="editBio"></textarea>
+          </label>
+          <label>
+            Avatar Image:
+            <input
+              type="text"
+              name="avatar_image"
+              id="editAvatar"
+              placeholder="e.g. avatar.png"
+            />
+          </label>
+          <button type="submit">Save Changes</button>
+        </form>
+      </section>
+      <div class="genres-container">
+        <h2>User Favorite Genres</h2>
+        <ul id="genre-list" class="genre-list"></ul>
+        <p id="error-message" class="error"></p>
+      </div>
+      <div class="select-genre-wrapper">
+        <h1>Select Your Favorite Genres</h1>
+
+        <div class="dropdown">
+          <button id="dropdownButton" class="dropdown-button">
+            Select Genres
+          </button>
+          <div id="dropdownMenu" class="dropdown-menu"></div>
+        </div>
+
+        <button id="saveGenresBtn" class="save-button">Save Genres</button>
+      </div>
+    </main>
+  </body>
+</html>
