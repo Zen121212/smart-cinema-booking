@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// Helper to send URL-encoded form data
 function toUrlEncoded(obj) {
   const params = new URLSearchParams();
   for (const key in obj) {
@@ -11,7 +10,6 @@ function toUrlEncoded(obj) {
   return params;
 }
 
-// Register user
 export async function registerUser(userData) {
   const data = toUrlEncoded(userData);
   const response = await axios.post(
@@ -22,7 +20,6 @@ export async function registerUser(userData) {
   return response.data;
 }
 
-// Login user
 export async function loginUser(credentials) {
   const data = toUrlEncoded(credentials);
   const response = await axios.post(
