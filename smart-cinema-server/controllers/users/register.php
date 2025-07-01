@@ -15,7 +15,11 @@ error_reporting(E_ALL);
 Model::setConnection($mysqli);
 
 header("Content-Type: application/json");
-
+header("Content-Type: application/json");
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Access-Control-Max-Age: 3600");
 
 if (!isset($_POST['name'], $_POST['last_name'], $_POST['email'], $_POST['password'])) {
     echo json_encode([
@@ -55,6 +59,7 @@ if($user){
 
 
     echo json_encode([
+        "success"=> true,
         "message" => "User created successfully.",
         "user" => $user->toArray()
     ]);

@@ -6,7 +6,9 @@ require_once("../../models/User.php");
 Model::setConnection($mysqli);
 
 header("Content-Type: application/json");
-
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Access-Control-Max-Age: 3600");
 if (!isset($_GET['id'])) {
     echo json_encode(["error" => "Missing id"]);
     return;

@@ -6,6 +6,10 @@ require_once("../../models/User.php");
 Model::setConnection($mysqli);
 
 header("Content-Type: application/json");
+header("Access-Control-Allow-Origin: *"); // Allows requests from any origin
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS"); // Specify allowed methods
+header("Access-Control-Allow-Headers: Content-Type, Authorization"); // Specify allowed headers
+header("Access-Control-Max-Age: 3600"); 
 
 $response = [];
 $roleFilter = $_GET['role'] ?? null;

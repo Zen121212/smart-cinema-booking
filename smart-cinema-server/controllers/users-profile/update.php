@@ -10,6 +10,12 @@ Model::setConnection($mysqli);
 
 header("Content-Type: application/json");
 
+header("Access-Control-Allow-Origin: *");
+
+
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Access-Control-Max-Age: 3600");
 if (!isset( $_POST['user_profile_username'],
             $_POST['phone'],
             $_POST['address'],
@@ -44,6 +50,7 @@ if (!$userProfile) {
 $updatedProfile = UserProfile::update($user_profile_id, $data);
 
 echo json_encode([
+    "success"=>true,
     "message" => "User profile updated successfully.",
     "user_profile" => $updatedProfile->toArray()
 ]);

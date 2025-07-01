@@ -6,7 +6,11 @@ Model::setConnection($mysqli);
 
 header("Content-Type: application/json");
 
+header("Access-Control-Allow-Origin: *");
 
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Access-Control-Max-Age: 3600");
 $required = ['user_id', 'movie_id', 'showtime_id', 'seat_id', 'total_price', 'booking_status'];
 $missing = [];
 
