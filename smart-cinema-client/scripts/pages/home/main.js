@@ -157,7 +157,6 @@ dropdownButton.addEventListener("click", () => {
   dropdownMenu.classList.toggle("show");
 });
 
-// Close dropdown if clicked outside
 document.addEventListener("click", (event) => {
   if (
     !dropdownButton.contains(event.target) &&
@@ -167,7 +166,6 @@ document.addEventListener("click", (event) => {
   }
 });
 
-// Populate dropdown
 genreOptions.forEach((genre) => {
   const label = document.createElement("label");
   label.innerHTML = `
@@ -176,7 +174,6 @@ genreOptions.forEach((genre) => {
   dropdownMenu.appendChild(label);
 });
 
-// Update selectedGenres on checkbox change
 dropdownMenu.addEventListener("change", (e) => {
   const checkbox = e.target;
   const genreId = checkbox.value;
@@ -189,10 +186,8 @@ dropdownMenu.addEventListener("change", (e) => {
   }
 });
 
-// Handle save button
 saveGenresBtn.addEventListener("click", async () => {
   if (selectedGenres.size === 0) {
-    alert("Please select at least one genre.");
     return;
   }
   console.log(selectedGenres);
@@ -207,13 +202,6 @@ saveGenresBtn.addEventListener("click", async () => {
       console.error(`Error saving genre ${genreId}:`, error);
     }
   }
-
-  alert("Genres saved successfully!");
-
-  // Optionally clear selections
-  // selectedGenres.clear();
-  // const checkboxes = dropdownMenu.querySelectorAll("input[type='checkbox']");
-  // checkboxes.forEach((cb) => (cb.checked = false));
 });
 function setupSignOut() {
   document.getElementById("signOutBtn").addEventListener("click", () => {
