@@ -58,6 +58,32 @@ abstract class Model{
 
         return $data ? new static($data) : null;
     }
+    public static function findAll($value, $key = null) {
+        $key = $key ?? static::$primary_key;
+
+
+        $sql = sprintf(
+            "SELECT * FROM %s WHERE %s = ?",
+            static::$table,
+            $key
+        );
+        $query = static::$mysqli->prepare($sql);
+
+        $type = self::detectTypes([$value]);
+        $query->bind_param($type, $value);
+        
+        $query->execute();
+
+        $result = $query->get_result();
+
+        $objects = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $objects[] = new static($row);
+        }
+        return $objects;
+}
+
     public static function update( $id, array $data) {
 
         $columns = array_keys($data);
@@ -75,7 +101,7 @@ abstract class Model{
             "UPDATE %s SET %s WHERE %s = ?",
             static::$table,
             $assignments,
-            $id
+            static::$primary_key
         );
 
         $query = static::$mysqli->prepare($sql);

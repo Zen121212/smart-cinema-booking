@@ -9,9 +9,10 @@ class UserModel extends Model{
     private string $email;
     private string $password;
     protected static string $table = "users";
+    protected static string $primary_key = 'id';
     public function __construct(array $data){
         $this->id = $data['id'];
-       $this->name = $data['name'] ?? '';
+        $this->name = $data['name'] ?? '';
         $this->last_name = $data['last_name'] ?? '';
         $this->email = $data['email'] ?? '';
         $this->password = $data['password'] ?? '';
@@ -23,6 +24,10 @@ class UserModel extends Model{
     public function getName(): string {
         return $this->name;
     }
+    public function getPassword(): string {
+    return $this->password;
+}
+
     public function getLastName(): string {
         return $this->last_name;
     }
@@ -66,6 +71,13 @@ class UserModel extends Model{
             $users[] = new static($row);
         }
         return $users;
+    }
+
+    public function toArrayExcludePassword()
+    {
+        $arr = $this->toArray();
+        unset($arr['password']);
+        return $arr;
     }
 
 }

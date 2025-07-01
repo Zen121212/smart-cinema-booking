@@ -1,5 +1,6 @@
 <?php
 require_once("Model.php");
+require_once("Genre.php");
 
 class UserFavoriteGenre extends Model
 {
@@ -31,4 +32,27 @@ class UserFavoriteGenre extends Model
             ]);
         }
     }
+    public static function getGenresForUser($user_profile_id) {
+
+        $sql ="
+            SELECT g.genre_id, g.name
+            FROM user_favorite_genres ufg
+            JOIN genres g ON ufg.genre_id = g.genre_id
+            WHERE ufg.user_profile_id = ?;
+        ";
+        
+
+        $query = static::$mysqli->prepare($sql);
+        $query->bind_param("i", $user_profile_id);
+        $query->execute();
+        $result = $query->get_result();
+
+        $genres = [];
+        while ($row = $result->fetch_assoc()) {
+            $genre = new Genre($row);
+            $genres[] = $genre;
+        }
+
+        return $genres;
+}
 }
