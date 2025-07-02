@@ -14,5 +14,5 @@ $query = "CREATE TABLE `seats` (
   CONSTRAINT `seats_ibfk_1` FOREIGN KEY (`showroom_id`) REFERENCES `showrooms` (`id`) ON DELETE CASCADE
 )";
 
-$conn->query($query);
-$conn->close();
+$mysqli->query($query);
+$mysqli->close();

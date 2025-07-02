@@ -13,5 +13,5 @@ $query = "CREATE TABLE `shop_products` (
   CONSTRAINT `shop_products_ibfk_1` FOREIGN KEY (`shop_id`) REFERENCES `shops` (`id`) ON DELETE CASCADE
 )";
 
-$conn->query($query);
-$conn->close();
+$mysqli->query($query);
+$mysqli->close();

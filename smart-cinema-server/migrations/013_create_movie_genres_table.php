@@ -13,5 +13,5 @@ $query = "CREATE TABLE `movie_genres` (
   CONSTRAINT `movie_genres_ibfk_2` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`genre_id`) ON DELETE CASCADE
 )";
 
-$conn->query($query);
-$conn->close();
+$mysqli->query($query);
+$mysqli->close();

@@ -8,5 +8,5 @@ $query = "CREATE TABLE roles (
     PRIMARY KEY (id),
     UNIQUE KEY name (name))";
 
-$conn->query($query);
-$conn->close();
+$mysqli->query($query);
+$mysqli->close();

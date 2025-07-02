@@ -8,5 +8,5 @@ $query = "CREATE TABLE `communication_preferences` (
   PRIMARY KEY (`preference_id`)
 )";
 
-$conn->query($query);
-$conn->close();
+$mysqli->query($query);
+$mysqli->close();

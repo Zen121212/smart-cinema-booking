@@ -15,5 +15,5 @@ $query = "CREATE TABLE `users_profile` (
         CONSTRAINT `users_profile_ibfk_1` FOREIGN KEY (`user_profile_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
         )";
 
-$conn->query($query);
-$conn->close();
+$mysqli->query($query);
+$mysqli->close();

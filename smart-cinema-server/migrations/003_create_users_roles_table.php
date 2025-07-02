@@ -10,5 +10,5 @@ $query = "CREATE TABLE `users_roles` (
   CONSTRAINT `users_roles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `users_roles_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE)";
 
-$conn->query($query);
-$conn->close();
+$mysqli->query($query);
+$mysqli->close();

@@ -11,5 +11,5 @@ $query = "CREATE TABLE `wallets` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `wallets_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`))";
 
-$conn->query($query);
-$conn->close();
+$mysqli->query($query);
+$mysqli->close();

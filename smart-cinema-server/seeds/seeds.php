@@ -15,7 +15,7 @@ $movies = [
 ];
 
 foreach ($movies as $movie) {
-    $stmt = $conn->prepare("INSERT INTO movies (title, description, release_date, duration, status) VALUES (?, ?, ?, ?, ?)");
+    $stmt = $mysqli->prepare("INSERT INTO movies (title, description, release_date, duration, status) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("sssds", $movie['title'], $movie['description'], $movie['release_date'], $movie['duration'], $movie['status']);
     $stmt->execute();
 }
@@ -26,7 +26,7 @@ $genres = [
 ];
 
 foreach ($genres as $index => $genre) {
-    $stmt = $conn->prepare("INSERT INTO genres (genre_id, name) VALUES (?, ?)");
+    $stmt = $mysqli->prepare("INSERT INTO genres (genre_id, name) VALUES (?, ?)");
     $genre_id = $index + 1;
     $stmt->bind_param("is", $genre_id, $genre);
     $stmt->execute();
@@ -37,7 +37,7 @@ $payment_methods = [
 ];
 
 foreach ($payment_methods as $index => $method) {
-    $stmt = $conn->prepare("INSERT INTO payments_methods (payment_method_id, method_name) VALUES (?, ?)");
+    $stmt = $mysqli->prepare("INSERT INTO payments_methods (payment_method_id, method_name) VALUES (?, ?)");
     $method_id = $index + 1;
     $stmt->bind_param("is", $method_id, $method);
     $stmt->execute();
@@ -45,9 +45,8 @@ foreach ($payment_methods as $index => $method) {
 
 $roles = ["admin", "customer"];
 
-// Insert roles
 foreach ($roles as $index => $role) {
-    $stmt = $conn->prepare("INSERT INTO roles (id, name) VALUES (?, ?)");
+    $stmt = $mysqli->prepare("INSERT INTO roles (id, name) VALUES (?, ?)");
     $role_id = $index + 1;
     $stmt->bind_param("is", $role_id, $role);
     $stmt->execute();
@@ -55,4 +54,4 @@ foreach ($roles as $index => $role) {
 
 echo "Seeding complete!";
 
-$conn->close();
+$mysqli->close();

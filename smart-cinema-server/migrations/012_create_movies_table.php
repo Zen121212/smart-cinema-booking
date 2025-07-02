@@ -12,5 +12,5 @@ $query = "CREATE TABLE `movies` (
   PRIMARY KEY (`id`)
 )";
 
-$conn->query($query);
-$conn->close();
+$mysqli->query($query);
+$mysqli->close();

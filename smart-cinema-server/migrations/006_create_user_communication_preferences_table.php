@@ -11,5 +11,5 @@ $query = "CREATE TABLE `user_communication_preferences` (
   CONSTRAINT `user_communication_preferences_ibfk_2` FOREIGN KEY (`preference_id`) REFERENCES `communication_preferences` (`preference_id`) ON DELETE CASCADE
 )";
 
-$conn->query($query);
-$conn->close();
+$mysqli->query($query);
+$mysqli->close();

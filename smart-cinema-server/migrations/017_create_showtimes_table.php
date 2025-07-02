@@ -16,5 +16,5 @@ $query = "CREATE TABLE `showtimes` (
   CONSTRAINT `showtimes_ibfk_3` FOREIGN KEY (`time_slot_id`) REFERENCES `time_slots` (`id`) ON DELETE CASCADE
 )";
 
-$conn->query($query);
-$conn->close();
+$mysqli->query($query);
+$mysqli->close();

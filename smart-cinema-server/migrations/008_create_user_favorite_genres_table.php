@@ -11,5 +11,5 @@ $query = "CREATE TABLE `user_favorite_genres` (
   CONSTRAINT `user_favorite_genres_ibfk_2` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`genre_id`) ON DELETE CASCADE
 )";
 
-$conn->query($query);
-$conn->close();
+$mysqli->query($query);
+$mysqli->close();

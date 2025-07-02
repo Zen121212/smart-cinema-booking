@@ -8,5 +8,5 @@ $query = "CREATE TABLE `shops` (
   PRIMARY KEY (`id`)
 )";
 
-$conn->query($query);
-$conn->close();
+$mysqli->query($query);
+$mysqli->close();

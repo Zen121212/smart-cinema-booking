@@ -8,5 +8,5 @@ $query = "CREATE TABLE `genres` (
   PRIMARY KEY (`genre_id`)
 )";
 
-$conn->query($query);
-$conn->close();
+$mysqli->query($query);
+$mysqli->close();

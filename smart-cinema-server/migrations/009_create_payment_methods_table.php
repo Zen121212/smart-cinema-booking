@@ -7,5 +7,5 @@ $query = "CREATE TABLE `payment_methods` (
   `method_name` varchar(100) NOT NULL,
   PRIMARY KEY (`payment_method_id`))";
 
-$conn->query($query);
-$conn->close();
+$mysqli->query($query);
+$mysqli->close();

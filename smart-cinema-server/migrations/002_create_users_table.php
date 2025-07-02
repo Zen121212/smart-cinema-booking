@@ -10,5 +10,5 @@ $query = "CREATE TABLE users (
     is_admin TINYINT(1) DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
 
-$conn->query($query);
-$conn->close();
+$mysqli->query($query);
+$mysqli->close();
