@@ -14,13 +14,14 @@ function toUrlEncoded(obj) {
   return params;
 }
 
-export async function createUserGenre(data) {
+export async function saveUserPaymentMethods(data) {
+  console.log(data);
+
   const payload = toUrlEncoded(data);
   const response = await axios.post(
-    "http://localhost/FSE-2025/smart-cinema-booking/smart-cinema-server/controllers/users-profile/favorite-genres/create.php",
+    "http://localhost/FSE-2025/smart-cinema-booking/smart-cinema-server/controllers/users-profile/payment-methods/create.php",
     payload,
     { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
   );
-  console.log(payload);
   return response.data;
 }

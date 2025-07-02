@@ -3,9 +3,9 @@ require_once("Model.php");
 
 class UserPaymentMethod extends Model
 {
-    protected static string $primary_key = 'id';
-    public int $user_profile_id;
-    public int $payment_method_id;
+    protected static string $primary_key = 'user_profile_id';
+    private int $user_profile_id;
+    private int $payment_method_id;
     protected static string $table = 'user_payment_methods';
 
     public function __construct(array $data)

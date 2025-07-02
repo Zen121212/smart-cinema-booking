@@ -5,6 +5,7 @@ export async function getFavoriteGenres(userId) {
     const response = await axios.get(
       `http://localhost/FSE-2025/smart-cinema-booking/smart-cinema-server/controllers/users-profile/favorite-genres/index.php?user_profile_id=${userId}`
     );
+    console.log(response.data);
     return response.data.favorite_genres || [];
   } catch (error) {
     console.error("Error fetching favorite genres:", error);

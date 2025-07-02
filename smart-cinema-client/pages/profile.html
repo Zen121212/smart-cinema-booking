@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Cinema - Home</title>
+    <link rel="stylesheet" href="../styles/profile.css" />
+    <link rel="stylesheet" href="../styles/navbar.css" />
+    <link rel="stylesheet" href="../styles/reset.css" />
+
+    <script defer src="../../public/profile.bundle.js"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="#" class="logo">🎬 Smart Cinema</a>
+        <a href="/smart-cinema-client/pages/home.html" class="nav-link">Home</a>
+        <a href="/smart-cinema-client/pages/profile.html" class="nav-link"
+          >Profile</a
+        >
+        <a href="#" class="nav-link">Movies</a>
+        <a href="#" class="nav-link">Bookings</a>
+        <a href="#" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-right">
+        <div class="profile-menu">
+          <button id="signOutBtn">Sign Out</button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="content">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <h1 id="welcomeMessage">Welcome to Smart Cinema</h1>
+        <p>Enjoy seamless movie booking and premium cinematic experiences.</p>
+      </section>
+
+      <!-- Dashboard Grid -->
+      <div class="dashboard-grid">
+        <!-- Profile Section -->
+        <section id="profileSection" class="profile-section">
+          <h2>User Profile</h2>
+          <div class="profile-info">
+            <div class="profile-details">
+              <p>
+                <strong>Username:</strong>
+                <span id="profileUsername"></span>
+              </p>
+              <p>
+                <strong>Name:</strong>
+                <span id="profileName"></span>
+              </p>
+              <p>
+                <strong>Last name:</strong>
+                <span id="profileLastName"></span>
+              </p>
+              <p>
+                <strong>Phone:</strong>
+                <span id="profilePhone"></span>
+              </p>
+              <p>
+                <strong>Address:</strong>
+                <span id="profileAddress"></span>
+              </p>
+              <p>
+                <strong>Bio:</strong>
+                <span id="profileBio"></span>
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="tickets-section">
+          <h2>My Tickets</h2>
+          <ul id="ticketList"></ul>
+        </section>
+        <section class="wallet-section">
+          <h2>My Wallet</h2>
+          <div class="wallet-container">
+            <div class="wallet-card">
+              <div class="wallet-balance" id="walletBalance">$125.50</div>
+              <div class="wallet-currency">Available Balance</div>
+              <div class="wallet-actions">
+                <button class="wallet-btn" id="addFundsBtn">Add Funds</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="preferences-grid">
+          <div class="genres-container">
+            <h2>Favorite Genres</h2>
+            <ul id="genre-list" class="genre-list"></ul>
+            <p id="error-message" class="error"></p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

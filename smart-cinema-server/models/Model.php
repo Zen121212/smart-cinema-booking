@@ -61,7 +61,6 @@ abstract class Model{
     public static function findAll($value, $key = null) {
         $key = $key ?? static::$primary_key;
 
-
         $sql = sprintf(
             "SELECT * FROM %s WHERE %s = ?",
             static::$table,
@@ -82,7 +81,7 @@ abstract class Model{
             $objects[] = new static($row);
         }
         return $objects;
-}
+    }
 
     public static function update( $id, array $data) {
 

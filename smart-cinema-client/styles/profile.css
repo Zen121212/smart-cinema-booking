@@ -3,6 +3,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/* body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #222;
+} */
 .profile-menu {
   position: relative;
 }
@@ -72,6 +78,9 @@
 }
 
 .dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
   margin-bottom: 2rem;
 }
 
@@ -130,6 +139,8 @@
 }
 
 .preferences-grid {
+  display: grid;
+  gap: 2rem;
   margin-bottom: 2rem;
 }
 
@@ -405,6 +416,90 @@ form button[type="submit"]:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
+.wallet-section {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.wallet-section h2 {
+  color: #333;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.5rem;
+}
+
+.wallet-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.wallet-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.wallet-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+}
+
+.wallet-balance {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.wallet-currency {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+}
+
+.wallet-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.wallet-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.wallet-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
 
 @media (max-width: 768px) {
   .dashboard-grid,
@@ -433,5 +528,16 @@ form button[type="submit"]:hover {
     grid-row: auto;
     justify-self: center;
     margin-bottom: 1rem;
+  }
+  .wallet-container {
+    grid-template-columns: 1fr;
+  }
+
+  .wallet-actions {
+    flex-direction: column;
+  }
+
+  .wallet-balance {
+    font-size: 2rem;
   }
 }

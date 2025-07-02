@@ -16,26 +16,31 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Max-Age: 3600");
-if (!isset( $_POST['user_profile_username'],
-            $_POST['phone'],
-            $_POST['address'],
-            $_POST['bio'], 
-            $_POST['avatar_image'])) 
-    {
-    echo json_encode([
-        "error" => "missing POST data."
-    ]);
+$user_profile_id = $_POST['user_profile_id'] ?? null;
+
+if (!$user_profile_id) {
+    echo json_encode(["error" => "Missing user_profile_id."]);
     return;
 }
-$user_profile_id = $_POST['user_profile_id'];
 
-$data = [
-    'user_profile_username' => $_POST['user_profile_username'],
-    'phone' => $_POST['phone'],
-    'address' => $_POST['address'],
-    'bio' => $_POST['bio'],
-    'avatar_image' => $_POST['avatar_image'],
+$fields = [
+    'user_profile_username',
+    'user_profile_name',
+    'user_profile_last_name',
+    'phone',
+    'address',
+    'bio',
+    'avatar_image'
 ];
+
+$data = [];
+
+foreach ($fields as $field) {
+    if (isset($_POST[$field]) && trim($_POST[$field]) !== '') {
+        $data[$field] = $_POST[$field];
+    }
+}
+
 
 $userProfile = UserProfile::find($user_profile_id);
 

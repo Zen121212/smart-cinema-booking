@@ -19,9 +19,15 @@ export async function renderMovies() {
 
     movies.forEach((movie) => {
       const card = document.createElement("div");
-      card.classList.add("movie-card");
-
+      card.classList.add("movie-card-wrapper");
+      const randomImageUrl = `https://picsum.photos/seed/${encodeURIComponent(
+        movie.title
+      )}/150/225`;
       card.innerHTML = `
+      <img src="${randomImageUrl}" alt="${
+        movie.title
+      } Poster" class="movie-poster">
+      <div class="movie-card">
         <h3>${movie.title}</h3>
         <p class="description">${
           movie.description || "No description available."
@@ -35,6 +41,7 @@ export async function renderMovies() {
         <span class="status ${movie.status}">
           ${formatStatus(movie.status)}
         </span>
+      </div>
       `;
 
       if (movie.status === "on_showtime") {
