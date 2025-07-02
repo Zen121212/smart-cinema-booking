@@ -11,7 +11,7 @@
 
 .movies-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 390px));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1.5rem;
 }
 
@@ -39,7 +39,7 @@
 }
 .movies-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 390px));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
   padding: 1rem;
@@ -92,4 +92,18 @@
 .movie-card-wrapper {
   display: flex;
   flex-direction: column;
+}
+
+.delete-btn {
+  background-color: crimson;
+  color: #fff;
+  border: none;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  margin-top: 0.5em;
+  border-radius: 3px;
+}
+
+.delete-btn:hover {
+  background-color: darkred;
 }

@@ -1,0 +1,33 @@
+body {
+  font-family: sans-serif;
+  max-width: 900px;
+  margin: auto;
+  padding: 1rem;
+}
+
+form {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.movie-card {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.movie-card h3 {
+  margin: 0.5rem 0;
+}

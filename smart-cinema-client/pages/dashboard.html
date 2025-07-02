@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Cinema Dashboard</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="../styles/home.css" />
+    <link rel="stylesheet" href="../styles/navbar.css" />
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/dashboard.css" />
+    <script defer src="../../public/dashboard.bundle.js"></script>
+  </head>
+  <body>
+    <h1>Smart Cinema Admin Dashboard</h1>
+
+    <section>
+      <h2>Create New Movie</h2>
+      <form id="createMovieForm">
+        <label>Title: <input type="text" name="title" required /></label>
+        <label>Description: <textarea name="description"></textarea></label>
+        <label>Release Date: <input type="date" name="release_date" /></label>
+        <label
+          >Duration (minutes): <input type="number" name="duration" required
+        /></label>
+        <label
+          >Status:
+          <select name="status">
+            <option value="coming_soon">Coming Soon</option>
+            <option value="on_showtime">Now Showing</option>
+          </select>
+        </label>
+        <button type="submit">Create Movie</button>
+      </form>
+    </section>
+
+    <hr />
+
+    <section>
+      <h2>All Movies</h2>
+      <div id="moviesGrid" class="movies-grid"></div>
+    </section>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

@@ -2,6 +2,10 @@ import { getUserProfile } from "../../api/profile/profile.js";
 import { getUserTickets } from "../../api/profile/tickets.js";
 import { getFavoriteGenres } from "../../api/profile/favoriteGenres.js";
 import { getWalletByUserId } from "../../api/profile/getWallet.js";
+import { addFundsToWallet } from "../../api/profile/updateWallet.js";
+
+let userId;
+
 document.addEventListener("DOMContentLoaded", () => {
   const user = JSON.parse(localStorage.getItem("logged_in"));
 
@@ -10,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "/smart-cinema-client/index.html";
     return;
   }
-  const userId = user.id;
+  userId = user.id;
   document.getElementById(
     "welcomeMessage"
   ).textContent = `Welcome ${user.name} to Smart Cinema`;
@@ -106,6 +110,84 @@ async function loadWallet(userId) {
       "Error loading wallet.";
   }
 }
+
+const modal = document.getElementById("modalOverlay");
+const form = document.getElementById("addFundsForm");
+const amountInput = document.getElementById("amount");
+const submitBtn = document.getElementById("submitBtn");
+const messageContainer = document.getElementById("messageContainer");
+
+function openPopup() {
+  modal.style.display = "flex";
+  amountInput.focus();
+  messageContainer.innerHTML = "";
+  form.reset();
+}
+
+function closePopup() {
+  modal.style.display = "none";
+  messageContainer.innerHTML = "";
+  form.reset();
+}
+
+function showSuccess(message) {
+  messageContainer.innerHTML = `<div class="success-message">${message}</div>`;
+}
+
+function showError(message) {
+  messageContainer.innerHTML = `<div class="error-message">${message}</div>`;
+}
+
+function setLoading(loading) {
+  submitBtn.disabled = loading;
+  if (loading) {
+    submitBtn.innerHTML = '<span class="loading"></span> Processing...';
+  } else {
+    submitBtn.textContent = "Add Funds";
+  }
+}
+
+async function handleSubmit(e) {
+  e.preventDefault();
+
+  const amount = parseFloat(amountInput.value);
+  if (!amount || amount <= 0) {
+    showError("Please enter a valid amount.");
+    return;
+  }
+
+  setLoading(true);
+  messageContainer.innerHTML = "";
+
+  try {
+    await addFundsToWallet(amount, userId);
+    showSuccess(`Successfully added $${amount.toFixed(2)} to your wallet!`);
+    setTimeout(() => {
+      closePopup();
+    }, 2000);
+  } catch (error) {
+    showError(error.message);
+  } finally {
+    setLoading(false);
+  }
+}
+
+document.getElementById("addFundsBtn").addEventListener("click", openPopup);
+document.getElementById("closeBtn").addEventListener("click", closePopup);
+document.getElementById("cancelBtn").addEventListener("click", closePopup);
+form.addEventListener("submit", handleSubmit);
+
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    closePopup();
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && modal.style.display === "flex") {
+    closePopup();
+  }
+});
 
 function setupSignOut() {
   document.getElementById("signOutBtn").addEventListener("click", () => {

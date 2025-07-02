@@ -5,7 +5,10 @@ require_once("../../models/Wallet.php");
 
 Model::setConnection($mysqli);
 header("Content-Type: application/json");
-
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Access-Control-Max-Age: 3600");
 if (!isset($_POST['user_id'], $_POST['amount'], $_POST['type'])) {
     echo json_encode([
         "error" => "User ID, amount, and transaction type are required.",
@@ -26,7 +29,7 @@ if ($amount === false || $amount <= 0) {
 }
 
 $wallet = Wallet::find($user_id);
-// echo"YES";
+
 if($wallet){ 
     
     $balanceBefore = $wallet->getBalance();

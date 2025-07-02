@@ -171,7 +171,7 @@
 }
 
 .genre-list li {
-  background: #4caf50;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 20px;
@@ -179,9 +179,9 @@
   font-size: 0.9rem;
 }
 
-.genre-list li:hover {
+/* .genre-list li:hover {
   background: #45a049;
-}
+} */
 
 .error {
   color: red;
@@ -408,7 +408,7 @@ form button[type="submit"] {
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   transition: all 0.3s ease;
 }
 

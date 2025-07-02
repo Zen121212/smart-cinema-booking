@@ -159,18 +159,18 @@
   gap: 0.5rem;
 }
 
-.genre-list li {
+/* .genre-list li {
   background: #4caf50;
   color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   transition: background 0.3s;
   font-size: 0.9rem;
-}
-
+} */
+/* 
 .genre-list li:hover {
   background: #45a049;
-}
+} */
 
 .error {
   color: red;
