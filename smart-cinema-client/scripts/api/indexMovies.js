@@ -1,9 +1,8 @@
 import axios from "axios";
+import { API_BASE_URL } from "./apiConfig.js";
 
 async function fetchMovies() {
-  const response = await axios.get(
-    "http://localhost/FSE-2025/smart-cinema-booking/smart-cinema-server/controllers/movies/index.php"
-  );
+  const response = await axios.get(`${API_BASE_URL}/movies`);
   return response.data.movies;
 }
 
@@ -20,28 +19,30 @@ export async function renderMovies() {
     movies.forEach((movie) => {
       const card = document.createElement("div");
       card.classList.add("movie-card-wrapper");
+
       const randomImageUrl = `https://picsum.photos/seed/${encodeURIComponent(
         movie.title
       )}/150/225`;
+
       card.innerHTML = `
-      <img src="${randomImageUrl}" alt="${
+        <img src="${randomImageUrl}" alt="${
         movie.title
       } Poster" class="movie-poster">
-      <div class="movie-card">
-        <h3>${movie.title}</h3>
-        <p class="description">${
-          movie.description || "No description available."
-        }</p>
-        <p class="duration"><strong>Duration:</strong> ${
-          movie.duration
-        } mins</p>
-        <p class="release-date"><strong>Release:</strong> ${formatDate(
-          movie.release_date
-        )}</p>
-        <span class="status ${movie.status}">
-          ${formatStatus(movie.status)}
-        </span>
-      </div>
+        <div class="movie-card">
+          <h3>${movie.title}</h3>
+          <p class="description">${
+            movie.description || "No description available."
+          }</p>
+          <p class="duration"><strong>Duration:</strong> ${
+            movie.duration
+          } mins</p>
+          <p class="release-date"><strong>Release:</strong> ${formatDate(
+            movie.release_date
+          )}</p>
+          <span class="status ${movie.status}">
+            ${formatStatus(movie.status)}
+          </span>
+        </div>
       `;
 
       if (movie.status === "on_showtime") {

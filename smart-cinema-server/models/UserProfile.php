@@ -1,5 +1,8 @@
 <?php
 require_once("Model.php");
+require_once("UserFavoriteGenre.php");
+require_once("PaymentMethod.php");
+
 
 class UserProfile extends Model
 {
@@ -47,6 +50,22 @@ class UserProfile extends Model
     public function getAvatarImage(): ?string {
         return $this->avatar_image;
     }
+    public function wallet(){
+        $userWallet = Wallet::find($this->user_profile_id, "user_id");
+        return $userWallet->toArray();
+    }
+    public function genres() {
+        $rows = UserFavoriteGenre::findAll($this->user_profile_id, "user_profile_id");
+        $genres = [];
+        foreach ($rows as $row) {
+           $genre = Genre::find($row->genre_id, 'genre_id');
+            if ($genre) {
+                $genres[] = $genre->toArray();
+            }
+        }
+        return $genres;
+    }
+
     public function toArray(): array {
         return [
             'user_profile_id' => $this->user_profile_id,
@@ -57,6 +76,8 @@ class UserProfile extends Model
             'address' => $this->address,
             'bio' => $this->bio,
             'avatar_image' => $this->avatar_image,
+            'wallet' => $this->wallet(),
+            'genres' => $this->genres(),
         ];
     }
 }

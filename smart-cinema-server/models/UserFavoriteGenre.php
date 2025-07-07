@@ -32,6 +32,7 @@ class UserFavoriteGenre extends Model
             ]);
         }
     }
+    
     public static function getGenresForUser($user_profile_id) {
 
         $sql ="

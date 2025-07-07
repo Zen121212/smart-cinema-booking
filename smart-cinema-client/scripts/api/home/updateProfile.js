@@ -1,16 +1,29 @@
 import axios from "axios";
+import { API_BASE_URL } from "../apiConfig.js";
+
+function encodeData(data) {
+  const params = new URLSearchParams();
+
+  for (const key in data) {
+    if (Array.isArray(data[key])) {
+      data[key].forEach((val) => params.append(`${key}[]`, val));
+    } else {
+      params.append(key, data[key]);
+    }
+  }
+
+  return params;
+}
 
 export async function updateUserProfile(updatedProfile) {
   try {
-    const data = new URLSearchParams(updatedProfile).toString();
+    const data = encodeData(updatedProfile);
 
     const response = await axios.post(
-      "http://localhost/FSE-2025/smart-cinema-booking/smart-cinema-server/controllers/users-profile/update.php",
+      `${API_BASE_URL}/users-profile/update.php`,
       data,
       {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
       }
     );
 

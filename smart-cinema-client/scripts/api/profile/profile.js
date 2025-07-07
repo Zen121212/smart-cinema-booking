@@ -1,13 +1,11 @@
 import axios from "axios";
+import { API_BASE_URL } from "../apiConfig.js";
 
 export async function getUserProfile(userId) {
   try {
-    const response = await axios.get(
-      `http://localhost/FSE-2025/smart-cinema-booking/smart-cinema-server/controllers/users-profile/index.php?user_profile_id=${userId}`
-    );
-    return response.data.user_profile;
+    const response = await axios.get(`${API_BASE_URL}/user/profile/${userId}`);
+    return response.data.payload;
   } catch (error) {
-    console.error("Error fetching profile:", error);
-    throw new Error("Failed to load user profile.");
+    console.error("Error fetching user profile data:", error);
   }
 }
