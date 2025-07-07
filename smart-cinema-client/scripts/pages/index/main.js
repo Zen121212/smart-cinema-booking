@@ -71,12 +71,14 @@ document.getElementById("loginForm")?.addEventListener("submit", async (e) => {
 
   try {
     const data = await loginUser({ email, password });
-
+    console.log(data);
     if (data.success) {
       alert("Login successful! Welcome.");
       loginPopup.classList.remove("active");
       document.getElementById("loginForm").reset();
-      localStorage.setItem("logged_in", JSON.stringify(data.user));
+      console.log(data);
+
+      localStorage.setItem("logged_in", JSON.stringify(data.payload.user));
       window.location.href =
         "http://127.0.0.1:5500/smart-cinema-client/pages/home.html";
     } else {

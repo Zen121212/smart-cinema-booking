@@ -2,7 +2,7 @@
 require_once("Model.php");
 require_once("UserRole.php");
 
-class UserModel extends Model{
+class User extends Model{
     protected int $id;
     private string $name;
     private string $last_name;

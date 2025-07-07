@@ -26,7 +26,6 @@ abstract class Model{
                 $types .= 's';
             }
         }
-        
         return $types;
     }
     public static function all(){
@@ -38,7 +37,6 @@ abstract class Model{
         
         $objects = [];
         while($row = $data->fetch_assoc()){
-             $count++;
             $objects[] = new static($row); //creating an object of type "static" / "parent" and adding the object to the array
         }
         return $objects; //we are returning an array of objects!!!!!!!!c
@@ -46,9 +44,8 @@ abstract class Model{
     public static function find($value, $key = null) {
         $key = $key ?? static::$primary_key;
         
-        $sql = sprintf("SELECT * FROM %s WHERE %s = ? LIMIT 1", static::$table, $key);
+        $sql = sprintf("SELECT * FROM %s WHERE %s = ?", static::$table, $key);
         $query = static::$mysqli->prepare($sql);
-
         $type = self::detectTypes([$value]);
         
         $query->bind_param($type, $value);
